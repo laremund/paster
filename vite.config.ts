@@ -10,4 +10,8 @@ export default defineConfig({
       },
     }),
   ],
+  base: './', // Required for Electron to load assets correctly
+  build: {
+    outDir: 'dist',
+  },
 })
