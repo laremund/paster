@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
-    "electron:build": "npm run build && tsc -p tsconfig.electron.json",
+    "electron:build": "npm run build && tsc -p tsconfig.electron.json && tsc -p tsconfig.preload.json",
     "electron:start": "cross-env NODE_ENV=production electron ."
   },
   "dependencies": {
