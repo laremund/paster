@@ -114,12 +114,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-200 p-8">
-      {/* Mode indicator */}
-      <div className="max-w-4xl mx-auto mb-4">
-        <p className="text-gray-600 text-sm">
-          Mode {state === 'default' ? '1' : state === 'editList' ? '2' : '3'}
-        </p>
-      </div>
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto bg-gray-300 p-12 min-h-[600px] relative">
