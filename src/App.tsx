@@ -113,136 +113,79 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">PASTER</h1>
-          {state === 'editList' ? (
-            <div className="flex gap-2">
-              {selectedIds.size > 0 && (
-                <button
-                  onClick={handleDeleteSelected}
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-                >
-                  Delete Selected ({selectedIds.size})
-                </button>
-              )}
-              <button
-                onClick={toggleEditList}
-                className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition"
-              >
-                Done
-              </button>
-            </div>
-          ) : state === 'default' ? (
-            <button
-              onClick={toggleEditList}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-            >
-              Edit List
-            </button>
-          ) : null}
-        </div>
-      </header>
+    <div className="min-h-screen bg-gray-200 p-8">
+      {/* Mode indicator */}
+      <div className="max-w-4xl mx-auto mb-4">
+        <p className="text-gray-600 text-sm">
+          Mode {state === 'default' ? '1' : state === 'editList' ? '2' : '3'}
+        </p>
+      </div>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-8">
-        {/* State A: Default View */}
+      <main className="max-w-4xl mx-auto bg-gray-300 p-12 min-h-[600px] relative">
+        {/* State A: Default View - Mode 1 */}
         {state === 'default' && (
-          <div className="space-y-6">
+          <div className="space-y-12">
             {items.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg mb-4">No items yet. Add your first snippet!</p>
+                <p className="text-gray-700 text-lg mb-4">No items yet. Add your first snippet!</p>
               </div>
             ) : (
               items.map((item) => (
-                <div key={item.id} className="bg-white rounded-lg border border-gray-200 p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      LABEL: {item.label}
+                <div key={item.id} className="space-y-3">
+                  <div className="flex justify-between items-start">
+                    <label className="text-base font-normal text-gray-900">
+                      {item.label}
                     </label>
                     <button
                       onClick={() => startEdit(item)}
-                      className="text-gray-500 hover:text-gray-700 transition"
-                      title="Edit"
+                      className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
                     >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        />
-                      </svg>
+                      Edit
                     </button>
                   </div>
                   <div
                     onClick={() => handleCopy(item.content)}
-                    className="border-2 border-gray-300 rounded p-4 bg-gray-50 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition group relative"
+                    className="border-2 border-gray-900 bg-white p-4 cursor-pointer hover:bg-gray-50 transition"
                   >
-                    <pre className="whitespace-pre-wrap text-sm text-gray-800 font-mono">
+                    <pre className="whitespace-pre-wrap text-base text-gray-900">
                       {item.content}
                     </pre>
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
-                      <svg
-                        className="w-5 h-5 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
               ))
             )}
-            <div className="text-center pt-4">
+            
+            {/* Bottom buttons */}
+            <div className="absolute bottom-12 right-12 flex gap-4">
+              <button
+                onClick={toggleEditList}
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+              >
+                Edit List
+              </button>
               <button
                 onClick={() => startEdit(null)}
-                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium"
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
-                + Add New Item
+                Add New
               </button>
             </div>
           </div>
         )}
 
-        {/* State B: Edit List Mode */}
+        {/* State B: Edit List Mode - Mode 2 */}
         {state === 'editList' && (
-          <div className="space-y-4">
+          <div className="space-y-12">
             {items.map((item) => (
-              <div key={item.id} className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center gap-3 mb-2">
-                  <input
-                    type="checkbox"
-                    checked={selectedIds.has(item.id)}
-                    onChange={() => toggleSelection(item.id)}
-                    className="w-5 h-5 text-red-600 rounded"
-                  />
-                  <button
-                    onClick={() => toggleSelection(item.id)}
-                    className="text-red-600 font-medium hover:text-red-700"
-                  >
-                    DELETE
-                  </button>
-                  <label className="text-sm font-medium text-gray-700">
-                    LABEL: {item.label}
+              <div key={item.id} className="space-y-3">
+                <div className="flex items-center border-b-2 border-gray-900 pb-2">
+                  <label className="text-base font-normal text-gray-900">
+                    {item.label}
                   </label>
                 </div>
-                <div className="border-2 border-gray-200 rounded p-4 bg-gray-100 opacity-60">
-                  <pre className="whitespace-pre-wrap text-sm text-gray-600 font-mono">
+                <div className="border-2 border-gray-900 bg-white p-4">
+                  <pre className="whitespace-pre-wrap text-base text-gray-900">
                     {item.content}
                   </pre>
                 </div>
@@ -250,108 +193,112 @@ function App() {
             ))}
             {items.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-500">No items to delete.</p>
+                <p className="text-gray-700">No items to display.</p>
               </div>
             )}
+            
+            {/* Bottom buttons */}
+            <div className="absolute bottom-12 right-12 flex gap-4">
+              <button
+                onClick={toggleEditList}
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+              >
+                OK
+              </button>
+              <button
+                onClick={toggleEditList}
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         )}
 
-        {/* State C: Single Item Edit Mode */}
+        {/* State C: Single Item Edit Mode - Mode 3 */}
         {state === 'editItem' && (
-          <div className="space-y-6">
-            {/* Show other items in background */}
-            {items
-              .filter((item) => !editingItem || item.id !== editingItem.id)
-              .map((item) => (
-                <div key={item.id} className="bg-white rounded-lg border border-gray-200 p-4 opacity-50">
-                  <div className="flex justify-between items-center mb-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      LABEL: {item.label}
-                    </label>
-                    <button
-                      onClick={() => startEdit(item)}
-                      className="text-gray-500 hover:text-gray-700 transition"
-                      title="Edit"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="border-2 border-gray-200 rounded p-4 bg-gray-50">
-                    <pre className="whitespace-pre-wrap text-sm text-gray-600 font-mono">
-                      {item.content}
-                    </pre>
-                  </div>
-                </div>
-              ))}
-
-            {/* Divider */}
-            <div className="border-t border-gray-300 my-6"></div>
-
-            {/* Edit Form */}
-            <div className="bg-white rounded-lg border-2 border-blue-500 p-6">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Label Input:
-                </label>
+          <div className="space-y-12">
+            {/* Currently editing item or new item */}
+            <div className="space-y-3">
+              {/* Label input box */}
+              <div className="border-2 border-gray-900 bg-white p-4">
                 <input
                   type="text"
                   value={editLabel}
                   onChange={(e) => setEditLabel(e.target.value)}
                   placeholder="Enter label..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-0 py-0 border-0 focus:outline-none text-base bg-transparent"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Content Input:
-                </label>
+              
+              {/* Content box */}
+              <div className="border-2 border-gray-900 bg-white p-4">
                 <textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
                   placeholder="Enter content..."
-                  rows={6}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                  rows={4}
+                  className="w-full px-0 py-0 border-0 focus:outline-none text-base bg-transparent resize-none"
                 />
               </div>
-              <div className="flex justify-center gap-4">
-                <button
-                  onClick={cancelEdit}
-                  className="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
-                >
-                  Cancel
-                </button>
+              
+              {/* Buttons below content */}
+              <div className="flex justify-end gap-2">
                 <button
                   onClick={handleSave}
                   disabled={!editLabel.trim() || !editContent.trim()}
-                  className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Save Changes
+                  OK
+                </button>
+                <button
+                  onClick={cancelEdit}
+                  className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
 
-            {/* Divider */}
-            <div className="border-t border-gray-300 my-6"></div>
-
-            {/* Add New Item Button */}
-            <div className="text-center">
+            {/* Non-editing items */}
+            {items
+              .filter((item) => !editingItem || item.id !== editingItem.id)
+              .map((item) => (
+                <div key={item.id} className="space-y-3">
+                  <div className="border-b-2 border-gray-900 pb-2">
+                    <label className="text-base font-normal text-gray-900">
+                      {item.label}
+                    </label>
+                  </div>
+                  <div className="border-2 border-gray-900 bg-white p-4">
+                    <pre className="whitespace-pre-wrap text-base text-gray-900">
+                      {item.content}
+                    </pre>
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      onClick={() => startEdit(item)}
+                      className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              ))}
+            
+            {/* Bottom buttons */}
+            <div className="absolute bottom-12 right-12 flex gap-4">
+              <button
+                onClick={toggleEditList}
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+              >
+                Edit List
+              </button>
               <button
                 onClick={() => startEdit(null)}
-                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium"
+                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
-                + Add New Item
+                Add New
               </button>
             </div>
           </div>
@@ -360,7 +307,7 @@ function App() {
 
       {/* Toast Notification */}
       {toast && (
-        <div className="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in">
+        <div className="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 shadow-lg">
           {toast}
         </div>
       )}
