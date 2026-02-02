@@ -113,13 +113,13 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 p-8">
+    <div className="min-h-screen bg-gray-200">
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto bg-gray-300 p-12 min-h-[600px] relative">
+      <main className="max-w-4xl mx-auto bg-gray-300 px-4 py-8 min-h-[600px] relative">
         {/* State A: Default View - Mode 1 */}
         {state === 'default' && (
-          <div className="space-y-12">
+          <div className="space-y-12 pb-24">
             {items.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-700 text-lg mb-4">No items yet. Add your first snippet!</p>
@@ -133,7 +133,7 @@ function App() {
                     </label>
                     <button
                       onClick={() => startEdit(item)}
-                      className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
+                      className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
                     >
                       Edit
                     </button>
@@ -151,16 +151,16 @@ function App() {
             )}
             
             {/* Bottom buttons */}
-            <div className="absolute bottom-12 right-12 flex gap-4">
+            <div className="absolute bottom-8 right-8 flex gap-4">
               <button
                 onClick={toggleEditList}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 Edit List
               </button>
               <button
                 onClick={() => startEdit(null)}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 Add New
               </button>
@@ -170,7 +170,7 @@ function App() {
 
         {/* State B: Edit List Mode - Mode 2 */}
         {state === 'editList' && (
-          <div className="space-y-12">
+          <div className="space-y-12 pb-24">
             {items.map((item) => (
               <div key={item.id} className="space-y-3">
                 <div className="flex items-center border-b-2 border-gray-900 pb-2">
@@ -192,16 +192,16 @@ function App() {
             )}
             
             {/* Bottom buttons */}
-            <div className="absolute bottom-12 right-12 flex gap-4">
+            <div className="absolute bottom-8 right-8 flex gap-4">
               <button
                 onClick={toggleEditList}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 OK
               </button>
               <button
                 onClick={toggleEditList}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 Cancel
               </button>
@@ -211,7 +211,7 @@ function App() {
 
         {/* State C: Single Item Edit Mode - Mode 3 */}
         {state === 'editItem' && (
-          <div className="space-y-12">
+          <div className="space-y-12 pb-24">
             {/* Currently editing item or new item */}
             <div className="space-y-3">
               {/* Label input box */}
@@ -241,13 +241,13 @@ function App() {
                 <button
                   onClick={handleSave}
                   disabled={!editLabel.trim() || !editContent.trim()}
-                  className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   OK
                 </button>
                 <button
                   onClick={cancelEdit}
-                  className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                  className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
                 >
                   Cancel
                 </button>
@@ -272,7 +272,7 @@ function App() {
                   <div className="flex justify-end">
                     <button
                       onClick={() => startEdit(item)}
-                      className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
+                      className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition text-sm"
                     >
                       Edit
                     </button>
@@ -281,16 +281,16 @@ function App() {
               ))}
             
             {/* Bottom buttons */}
-            <div className="absolute bottom-12 right-12 flex gap-4">
+            <div className="absolute bottom-8 right-8 flex gap-4">
               <button
                 onClick={toggleEditList}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 Edit List
               </button>
               <button
                 onClick={() => startEdit(null)}
-                className="px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
+                className="cursor-pointer px-6 py-2 bg-gray-300 text-gray-900 border-2 border-gray-900 hover:bg-gray-400 transition"
               >
                 Add New
               </button>
