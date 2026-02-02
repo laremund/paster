@@ -115,7 +115,7 @@ function App() {
         <div className="space-y-8 pb-24">
           {/* Edit Form - shown when adding/editing */}
           {state === 'editItem' && (
-            <div className="space-y-3 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5] p-4">
+            <div className="space-y-3 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900  p-4">
               <input
                 type="text"
                 value={editLabel}
@@ -136,13 +136,13 @@ function App() {
                 <button
                   onClick={handleSave}
                   disabled={!editLabel.trim() || !editContent.trim()}
-                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
+                  className="px-6 py-2  text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#d4d0c5] transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                 >
                   OK
                 </button>
                 <button
                   onClick={cancelEdit}
-                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
+                  className="px-6 py-2  text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#d4d0c5] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                 >
                   Cancel
                 </button>
@@ -159,36 +159,45 @@ function App() {
               .filter((item) => state === 'default' || !editingItem || item.id !== editingItem.id)
               .map((item) => (
                 <div key={item.id} className="space-y-3">
-                  <div className="flex justify-between items-center border-b-2 border-gray-900 pb-2">
-                    <label className="text-base font-normal text-gray-900">
-                      {item.label}
-                    </label>
-                    {state === 'default' && (
-                      <div className="flex gap-3">
-                        {/* Edit Icon */}
-                        <button
-                          onClick={() => startEdit(item)}
-                          className="hover:opacity-70 transition"
-                          aria-label="Edit"
-                        >
-                          <svg className="w-5 h-5 cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                        </button>
-                        {/* Delete Icon */}
-                        <button
-                          onClick={() => handleDelete(item.id)}
-                          className="hover:opacity-70 transition"
-                          aria-label="Delete"
-                        >
-                          <svg className="w-5 h-5 cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                          </svg>
-                        </button>
-                      </div>
-                    )}
+                  <div>
+                    <div className="flex justify-between items-center pb-2">
+                      <label className="text-base font-normal text-gray-900">
+                        {item.label}
+                      </label>
+                      {state === 'default' && (
+                        <div className="flex gap-3">
+                          {/* Edit Icon */}
+                          <button
+                            onClick={() => startEdit(item)}
+                            className="hover:opacity-70 transition"
+                            aria-label="Edit"
+                          >
+                            <svg className="w-5 h-5 cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                          </button>
+                          {/* Delete Icon */}
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            className="hover:opacity-70 transition"
+                            aria-label="Delete"
+                          >
+                            <svg className="w-5 h-5 cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <polyline points="3 6 5 6 21 6" />
+                              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <div className='h-[5px] 
+                                    border-t-1 border-t-[#c9c5ba]
+                                    border-r-1 border-r-white 
+                                    border-b-1 border-b-white
+                                    border-l-1 border-l-[#c9c5ba]
+                                    '
+                    ></div>
                   </div>
                   <div
                     onMouseDown={() => state === 'default' && handleContentMouseDown(item.id)}
@@ -200,9 +209,9 @@ function App() {
                         ? `cursor-pointer ${
                             pressedItemId === item.id
                               ? 'bg-[#6b9fff] text-white border-2 border-t-gray-900 border-l-gray-900 border-r-white border-b-white'
-                              : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5] hover:bg-[#c9c5ba]'
+                              : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900  hover:bg-[#d4d0c5]'
                           }`
-                        : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5]'
+                        : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 '
                     }`}
                   >
                     <pre className="whitespace-pre-wrap text-base">
@@ -218,7 +227,7 @@ function App() {
         <div className="fixed bottom-8 right-8">
           <button
             onClick={() => startEdit(null)}
-            className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
+            className="px-6 py-2 bg-[#e8e4d9] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#d4d0c5] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
           >
             Add new
           </button>
