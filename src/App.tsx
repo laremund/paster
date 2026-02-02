@@ -205,7 +205,7 @@ function App() {
                         : 'border-2 border-gray-900 bg-[#d4d0c5]'
                     }`}
                   >
-                    <pre className="whitespace-pre-wrap text-base font-mono">
+                    <pre className="whitespace-pre-wrap text-base">
                       {item.content}
                     </pre>
                   </div>
