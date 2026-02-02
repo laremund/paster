@@ -115,13 +115,13 @@ function App() {
         <div className="space-y-8 pb-24">
           {/* Edit Form - shown when adding/editing */}
           {state === 'editItem' && (
-            <div className="space-y-3">
+            <div className="space-y-3 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5] p-4">
               <input
                 type="text"
                 value={editLabel}
                 onChange={(e) => setEditLabel(e.target.value)}
                 placeholder="New Item"
-                className="w-full border-2 border-gray-900 bg-white p-3 text-base focus:outline-none"
+                className="w-full border-2 border-t-gray-900 border-l-gray-900 border-r-[#e8e4d9] border-b-[#e8e4d9] bg-white p-3 text-base focus:outline-none"
               />
               
               <textarea
@@ -129,20 +129,20 @@ function App() {
                 onChange={(e) => setEditContent(e.target.value)}
                 placeholder="New Item text"
                 rows={4}
-                className="w-full border-2 border-gray-900 bg-white p-3 text-base focus:outline-none resize-none"
+                className="w-full border-2 border-t-gray-900 border-l-gray-900 border-r-[#e8e4d9] border-b-[#e8e4d9] bg-white p-3 text-base focus:outline-none resize-none"
               />
               
               <div className="flex justify-end gap-3">
                 <button
                   onClick={handleSave}
                   disabled={!editLabel.trim() || !editContent.trim()}
-                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-gray-900 hover:bg-[#c9c5ba] transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                 >
                   OK
                 </button>
                 <button
                   onClick={cancelEdit}
-                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer"
+                  className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                 >
                   Cancel
                 </button>
@@ -199,10 +199,10 @@ function App() {
                       state === 'default' 
                         ? `cursor-pointer ${
                             pressedItemId === item.id
-                              ? 'bg-[#6b9fff] text-white border-2 border-[#6b9fff]'
-                              : 'border-2 border-gray-900 bg-[#d4d0c5] hover:bg-[#c9c5ba]'
+                              ? 'bg-[#6b9fff] text-white border-2 border-t-gray-900 border-l-gray-900 border-r-white border-b-white'
+                              : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5] hover:bg-[#c9c5ba]'
                           }`
-                        : 'border-2 border-gray-900 bg-[#d4d0c5]'
+                        : 'border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 bg-[#d4d0c5]'
                     }`}
                   >
                     <pre className="whitespace-pre-wrap text-base">
@@ -218,7 +218,7 @@ function App() {
         <div className="fixed bottom-8 right-8">
           <button
             onClick={() => startEdit(null)}
-            className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer"
+            className="px-6 py-2 bg-[#d4d0c5] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#c9c5ba] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
           >
             Add new
           </button>
