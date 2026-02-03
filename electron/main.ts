@@ -7,10 +7,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // The built Electron app will look for the preload script at this path
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
 
+const iconPath = path.join(
+  __dirname,
+  '..',
+  'build',
+  process.platform === 'win32' ? 'icon-win.png' : 'icon.png'
+);
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
