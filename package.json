@@ -4,6 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "main": "out/main.js",
+  "build": {
+    "appId": "com.paster.app",
+    "productName": "Paster",
+    "directories": {
+      "output": "release"
+    },
+    "extraResources": [
+      { "from": "build", "to": "build" }
+    ],
+    "mac": {
+      "icon": "build/icon.png",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "build/icon-win.png"
+    },
+    "linux": {
+      "icon": "build/icon.png"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,7 +31,8 @@
     "preview": "vite preview",
     "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
     "electron:build": "npm run build && tsc -p tsconfig.electron.json && tsc -p tsconfig.preload.json",
-    "electron:start": "cross-env NODE_ENV=production electron ."
+    "electron:start": "cross-env NODE_ENV=production electron .",
+    "electron:package": "npm run electron:build && electron-builder"
   },
   "dependencies": {
     "prettier": "^3.8.1",
@@ -30,6 +51,7 @@
     "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
     "electron": "^33.0.0",
+    "electron-builder": "^26.7.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
