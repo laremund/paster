@@ -205,7 +205,7 @@ function App() {
       </main>
 
       {toast && (
-        <div className="fixed bottom-20 right-8 bg-gray-800 text-white px-6 py-3 shadow-lg z-50">
+        <div className="fixed top-15 right-4 bg-[#6b9fff] text-white px-6 py-3 shadow-lg z-50">
           {toast}
         </div>
       )}
