@@ -101,8 +101,10 @@ function App() {
   return (
     <div className="min-h-screen bg-[#e8e4d9]">
       {/* Header */}
-      <header className="bg-[#6b9fff] text-white px-6 py-4 flex items-center gap-3">
-        <h1 className="text-xl font-medium">Paster</h1>
+      <header className="p-1">
+        <div className="bg-[#6b9fff] text-white px-4 py-2 flex items-center gap-3">
+          <h1 className="text-xl font-medium">Paster</h1>
+        </div>
       </header>
 
       {/* Main Content */}
