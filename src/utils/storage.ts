@@ -31,15 +31,8 @@ export const updateItem = (
   id: string,
   label: string,
   content: string
-): PasterItem[] => {
-  return items.map((item) =>
-    item.id === id ? { ...item, label, content } : item
-  );
-};
+): PasterItem[] =>
+  items.map((item) => (item.id === id ? { ...item, label, content } : item));
 
-export const deleteItems = (
-  items: PasterItem[],
-  ids: string[]
-): PasterItem[] => {
-  return items.filter((item) => !ids.includes(item.id));
-};
+export const deleteItems = (items: PasterItem[], ids: string[]): PasterItem[] =>
+  items.filter((item) => !ids.includes(item.id));
