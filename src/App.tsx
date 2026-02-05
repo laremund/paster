@@ -195,22 +195,22 @@ function App() {
                             {item.label}
                           </label>
                           {state === 'default' && (
-                            <div className="flex gap-3">
+                            <div className="flex gap-2">
                               {/* Edit Icon */}
                               <button
                                 onClick={() => startEdit(item)}
-                                className="hover:opacity-70 transition"
+                                className="p-1 bg-[#e8e4d9] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#d4d0c5] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                                 aria-label="Edit"
                               >
-                                <img src="/pencil_icon.png" alt="" className="w-6 h-6 cursor-pointer" />
+                                <img src="/pencil_icon.png" alt="" className="w-5 h-5" />
                               </button>
                               {/* Delete Icon */}
                               <button
                                 onClick={() => handleDelete(item.id)}
-                                className="hover:opacity-70 transition"
+                                className="p-1 bg-[#e8e4d9] text-gray-900 border-2 border-t-white border-l-white border-r-gray-900 border-b-gray-900 hover:bg-[#d4d0c5] transition cursor-pointer active:border-t-gray-900 active:border-l-gray-900 active:border-r-white active:border-b-white"
                                 aria-label="Delete"
                               >
-                                <img src="/trash_icon.png" alt="" className="w-6 h-6 cursor-pointer" />
+                                <img src="/trash_icon.png" alt="" className="w-5 h-5" />
                               </button>
                             </div>
                           )}
