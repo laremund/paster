@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { PasterItem } from './types';
-import { loadItems, saveItems, createItem, updateItem, deleteItems } from './utils/storage';
+import { loadItems, loadItemsAsync, saveItems, createItem, updateItem, deleteItems } from './utils/storage';
 import { copyToClipboard } from './utils/clipboard';
 
 const inputClass =
@@ -58,6 +58,14 @@ function EditForm({
 
 function App() {
   const [items, setItems] = useState<PasterItem[]>(() => loadItems());
+
+  useEffect(() => {
+    const load = async () => {
+      const loaded = await loadItemsAsync();
+      if (loaded.length > 0) setItems(loaded);
+    };
+    load();
+  }, []);
   const [state, setState] = useState<'default' | 'editItem'>('default');
   const [editingItem, setEditingItem] = useState<PasterItem | null>(null);
   const [editLabel, setEditLabel] = useState('');
@@ -89,20 +97,20 @@ function App() {
     setState('editItem');
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!editLabel.trim() || !editContent.trim()) return;
     const updated = editingItem
       ? updateItem(items, editingItem.id, editLabel.trim(), editContent.trim())
       : [createItem(editLabel.trim(), editContent.trim()), ...items];
     setItems(updated);
-    saveItems(updated);
+    await saveItems(updated);
     resetEdit();
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     const updated = deleteItems(items, [id]);
     setItems(updated);
-    saveItems(updated);
+    await saveItems(updated);
   };
 
   const isDefault = state === 'default';

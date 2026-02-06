@@ -1,8 +1,28 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import fs from 'node:fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const STORAGE_KEY = 'paster_items';
+
+function getStoragePath(): string {
+  return path.join(app.getPath('userData'), 'paster-data.json');
+}
+
+function loadItemsFromDisk(): unknown[] {
+  try {
+    const data = fs.readFileSync(getStoragePath(), 'utf-8');
+    return JSON.parse(data);
+  } catch {
+    return [];
+  }
+}
+
+function saveItemsToDisk(items: unknown[]): void {
+  fs.writeFileSync(getStoragePath(), JSON.stringify(items), 'utf-8');
+}
 
 // The built Electron app will look for the preload script at this path
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
@@ -38,6 +58,11 @@ function createWindow() {
 
 // This method will be called when Electron has finished initialization
 app.whenReady().then(() => {
+  ipcMain.handle('storage:load', () => loadItemsFromDisk());
+  ipcMain.handle('storage:save', (_event, items: unknown[]) => {
+    saveItemsToDisk(items);
+  });
+
   createWindow();
 
   app.on('activate', () => {
