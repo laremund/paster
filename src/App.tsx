@@ -158,14 +158,14 @@ function App() {
                                 className={iconBtnClass}
                                 aria-label="Edit"
                               >
-                                <img src="/pencil_icon.png" alt="" className="w-5 h-5" />
+                                <img src="./pencil_icon.png" alt="" className="w-5 h-5" />
                               </button>
                               <button
                                 onClick={() => handleDelete(item.id)}
                                 className={iconBtnClass}
                                 aria-label="Delete"
                               >
-                                <img src="/trash_icon.png" alt="" className="w-5 h-5" />
+                                <img src="./trash_icon.png" alt="" className="w-5 h-5" />
                               </button>
                             </div>
                           )}
