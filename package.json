@@ -11,7 +11,10 @@
       "output": "release"
     },
     "extraResources": [
-      { "from": "build", "to": "build" }
+      {
+        "from": "build",
+        "to": "build"
+      }
     ],
     "mac": {
       "icon": "build/icon.png",
@@ -35,7 +38,6 @@
     "electron:package": "npm run electron:build && electron-builder"
   },
   "dependencies": {
-    "prettier": "^3.8.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -46,7 +48,6 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "autoprefixer": "^10.4.23",
     "babel-plugin-react-compiler": "^1.0.0",
     "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
