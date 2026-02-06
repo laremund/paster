@@ -130,7 +130,7 @@ function App() {
 
           {items.length === 0 && isDefault ? (
             <div className="text-center py-12">
-              <p className="text-gray-700 text-lg mb-4">No items yet. Add your first snippet!</p>
+              <p className="text-gray-700 text-lg mb-4">No items yet.</p>
             </div>
           ) : (
             items.map((item) => {
