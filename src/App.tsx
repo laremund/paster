@@ -205,7 +205,7 @@ function App() {
           )}
         </div>
 
-        <div className="fixed bottom-8 right-8">
+        <div className="fixed bottom-8 right-4">
           <button onClick={() => startEdit(null)} className={`${btnClass} bg-[#e8e4d9]`}>
             Add new
           </button>
