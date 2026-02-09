@@ -1,5 +1,7 @@
 # Paster
 
+![App Logo](build/icon-win.png)
+
 A desktop clipboard manager built with Electron and React. Store snippets, copy them with one click.
 
 ## Prerequisites
